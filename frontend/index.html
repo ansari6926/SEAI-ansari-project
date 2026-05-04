@@ -3,84 +3,91 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>RoadSense AI</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>RoadGuard AI</title>
+    <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
     <main class="shell">
       <section class="hero">
         <div>
-          <p class="eyebrow">Road damage intelligence</p>
-          <h1>RoadSense AI</h1>
-          <p class="lede">
-            Upload a road image to detect pavement damage, estimate repair urgency, and generate a civic repair plan.
-          </p>
+          <p class="eyebrow">Civic road intelligence</p>
+          <h1>RoadGuard AI</h1>
+          <p class="lede">A full-stack deep learning dashboard for road damage monitoring, analytics, and automated repair prioritization.</p>
         </div>
-        <div class="status">
-          <span id="apiStatus">Checking API...</span>
-        </div>
+        <div class="status-pill" id="serviceStatus">Checking API...</div>
       </section>
+
+      <section class="metrics" id="metrics"></section>
 
       <section class="workspace">
-        <form id="uploadForm" class="panel">
-          <h2>Inspection</h2>
-          <label class="dropzone">
-            <input id="imageInput" type="file" accept="image/*" required />
-            <span>Choose road image</span>
-          </label>
-          <button type="submit">Run analysis</button>
-          <p class="hint">Backend: <code id="apiUrl"></code></p>
-        </form>
-
-        <section class="panel result">
-          <h2>Result</h2>
-          <img id="preview" alt="Annotated road inspection result" />
-          <div id="emptyState" class="empty">No inspection run yet.</div>
-        </section>
-      </section>
-
-      <section class="metrics">
-        <article>
-          <span>Severity</span>
-          <strong id="severity">-</strong>
-        </article>
-        <article>
-          <span>Priority</span>
-          <strong id="priority">-</strong>
-        </article>
-        <article>
-          <span>Cost</span>
-          <strong id="cost">-</strong>
-        </article>
-        <article>
-          <span>SLA</span>
-          <strong id="sla">-</strong>
-        </article>
-      </section>
-
-      <section class="details">
-        <div class="panel">
-          <h2>Damage Breakdown</h2>
-          <ul id="detections"></ul>
+        <div class="panel map-panel">
+          <div class="panel-head">
+            <h2>Damage Hotspots</h2>
+            <span id="incidentCount">0 reports</span>
+          </div>
+          <div class="city-map" id="cityMap"></div>
         </div>
+
         <div class="panel">
-          <h2>Civic Repair Plan</h2>
-          <p id="dispatch">Run an inspection to view the dispatch recommendation.</p>
-          <dl>
-            <div><dt>Risk zone</dt><dd id="risk">-</dd></div>
-            <div><dt>Crew size</dt><dd id="crew">-</dd></div>
-            <div><dt>Traffic control</dt><dd id="lane">-</dd></div>
-            <div><dt>SDG alignment</dt><dd id="sdg">-</dd></div>
-          </dl>
+          <div class="panel-head">
+            <h2>AI Prediction</h2>
+            <span>demo model</span>
+          </div>
+          <form id="predictForm" class="predict-form">
+            <label>
+              Location
+              <input name="location" value="Metro Station Service Road" required />
+            </label>
+            <label>
+              Road type
+              <select name="road_type">
+                <option>urban arterial</option>
+                <option>school zone</option>
+                <option>hospital approach</option>
+                <option>highway connector</option>
+              </select>
+            </label>
+            <label>
+              Traffic density
+              <input name="traffic_density" type="range" min="0" max="100" value="78" />
+            </label>
+            <label>
+              Visual damage score
+              <input name="visual_damage_score" type="range" min="0" max="100" value="83" />
+            </label>
+            <label>
+              Citizen reports
+              <input name="citizen_reports" type="number" min="0" max="500" value="26" />
+            </label>
+            <button type="submit">Run prediction</button>
+          </form>
+          <div class="prediction" id="predictionResult"></div>
         </div>
       </section>
 
-      <section class="panel alert">
-        <h2>Maintenance Alert</h2>
-        <p id="alert">The generated maintenance note will appear here.</p>
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Automated Maintenance Queue</h2>
+          <span>highest priority first</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Location</th>
+                <th>Damage</th>
+                <th>Score</th>
+                <th>Status</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody id="queueBody"></tbody>
+          </table>
+        </div>
       </section>
     </main>
-
-    <script src="app.js"></script>
+    <script src="/static/app.js"></script>
   </body>
 </html>
+
