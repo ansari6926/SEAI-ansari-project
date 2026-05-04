@@ -88,9 +88,12 @@ kubectl get services
 
 ## Paper and Report
 
-- `docs/RoadSense_AI_Software_Impacts_Paper.md`
-- `docs/Project_Report.md`
-- `docs/Architecture.md`
+- Start here: `docs/OPEN_REPORTS_HERE.md`
+- Full project report: `docs/Project_Report.md`
+- IEEE-style paper: `docs/RoadSense_AI_Software_Impacts_Paper.md`
+- Word copies: `docs/RoadSense_AI_Project_Report.docx`, `docs/RoadSense_AI_Software_Impacts_Paper.docx`
+- Browser copies: `docs/RoadSense_AI_Project_Report.html`, `docs/RoadSense_AI_Software_Impacts_Paper.html`
+- Figures and graphs: `docs/assets/`
 
 ## License
 

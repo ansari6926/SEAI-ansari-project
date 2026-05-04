@@ -1,5 +1,9 @@
 # RoadSense AI Architecture
 
+![RoadSense AI Architecture](assets/roadsense_architecture.svg)
+
+## Flow Diagram
+
 ```text
 +---------------------+        +-----------------------+
 | Browser dashboard   |        | REST/API clients      |

@@ -1,110 +1,115 @@
-# RoadSense AI: A Lightweight Road Damage Detection and Civic Repair Planning System
+# RoadSense AI: Road Damage Detection and Civic Repair Planning Using Lightweight Computer Vision
 
-## Metadata
-
-**Current code version:** v1.0.0  
-**Permanent link to code/repository used for this code version:** To be updated after GitHub upload  
-**Permanent link to reproducible capsule:** Docker image link to be updated after Docker Hub upload  
-**Legal code license:** MIT  
-**Code versioning system used:** Git  
-**Software code languages, tools, and services used:** Python, FastAPI, OpenCV, ONNX Runtime, JavaScript, Docker, Kubernetes  
-**Compilation requirements, operating environments and dependencies:** Python 3.10, Docker Desktop, optional ONNX model file  
-**Developer documentation:** README.md and API documentation at `/docs`  
-**Support email:** student email to be inserted
+**Author:** Ansari  
+**Department:** Software Engineering in Artificial Intelligence  
+**Repository:** https://github.com/ansari6926/SEAI-ansari-project
 
 ## Abstract
 
-RoadSense AI is an open-source software application for automated road damage inspection and maintenance prioritisation. The system extends a conventional road damage detection pipeline by adding a civic repair planning layer that estimates severity, repair priority, crew size, service-level agreement, lane closure requirement, approximate repair cost, SDG alignment, and a natural-language maintenance alert. The backend is implemented using FastAPI and can serve either a YOLOv8 ONNX model or a deterministic demonstration mode when the model file is unavailable. A lightweight web dashboard allows users to upload road images, view annotated detections, and receive actionable repair recommendations. The software is aligned with Sustainable Development Goals 3, 9, and 11 by supporting safer roads, resilient infrastructure, and sustainable urban maintenance workflows.
+Road damage inspection is an important task for safe and sustainable transportation infrastructure. Traditional inspection methods are manual, slow, and difficult to scale. This paper presents RoadSense AI, a lightweight road damage detection and civic repair planning system. The software accepts road images through a browser dashboard or REST API, performs computer vision based damage analysis, calculates severity, assigns repair priority, and generates a civic maintenance plan. The main novelty of the system is the Civic Repair Planner, which converts detections into repair cost, crew size, service-level agreement, lane closure requirement, risk zone, SDG alignment, and dispatch note. The system uses FastAPI, OpenCV, ONNX Runtime, Docker, and a static web dashboard. The project is aligned with SDG 3, SDG 9, and SDG 11 by supporting safer roads, resilient infrastructure, and sustainable cities.
 
-## Keywords
+**Keywords:** Road damage detection, smart city, FastAPI, ONNX Runtime, civic repair planning, computer vision, sustainable infrastructure.
 
-Road damage detection; smart cities; civic maintenance; FastAPI; ONNX Runtime; computer vision; sustainable infrastructure
+## I. Introduction
 
-## Code Metadata
+Road surface defects such as potholes, alligator cracks, longitudinal cracks, and transverse cracks can cause accidents, traffic delays, and vehicle damage. Municipal road maintenance teams must inspect large road networks and prioritize repairs based on severity and public safety. Manual inspection is still widely used, but it is time-consuming and dependent on field staff availability.
 
-| Field | Description |
+Computer vision can improve this process by detecting road damage from images. However, many academic and open-source prototypes stop at visual detection and do not produce maintenance decisions. In real civic workflows, the output must answer practical questions: How urgent is the repair? How many workers are needed? What is the expected response time? Is lane closure required? What is the approximate cost?
+
+RoadSense AI addresses this gap by adding a civic planning layer above road damage detection. The system provides both detection output and decision-support output.
+
+## II. Related Work
+
+Road damage detection has been studied using convolutional neural networks and YOLO-based object detection models. YOLO models are popular because they provide fast object detection and can be exported to formats such as ONNX for CPU-friendly inference. FastAPI is commonly used for lightweight machine learning inference APIs, while Docker is used to package the application for repeatable deployment.
+
+Existing systems generally focus on model accuracy and bounding-box output. RoadSense AI focuses on software impact by connecting detection output with civic maintenance planning.
+
+## III. Proposed System
+
+The proposed system contains a frontend dashboard, FastAPI backend, ONNX-ready inference layer, analytics layer, Civic Repair Planner, and alert generator.
+
+![RoadSense AI Architecture](assets/roadsense_architecture.svg)
+
+Fig. 1. RoadSense AI system architecture.
+
+The user uploads a road image from the browser. The backend decodes the image using OpenCV. If an ONNX model is available, the backend uses ONNX Runtime for inference. If the model file is unavailable, the system runs deterministic demo detections. The detections are processed by severity, priority, and civic planning modules.
+
+## IV. Methodology
+
+The methodology is divided into five stages.
+
+### A. Image Input and Preprocessing
+
+The image is uploaded through the `/api/v1/detect` endpoint. OpenCV decodes the image and prepares it for inference.
+
+### B. Detection
+
+The detection layer supports YOLOv8 ONNX output. In demo mode, plausible deterministic detections are generated so the software can be evaluated without requiring a large trained model file.
+
+### C. Severity Scoring
+
+Each detected damage class is assigned a severity weight. Potholes and alligator cracks receive higher weights than longitudinal cracks. The final severity score combines class weight, confidence, and bounding-box area ratio.
+
+### D. Repair Priority
+
+The priority service classifies road damage into LOW, MEDIUM, HIGH, or CRITICAL categories.
+
+![Priority SLA Graph](assets/roadsense_priority_graph.svg)
+
+Fig. 2. Repair priority and SLA mapping.
+
+### E. Civic Repair Planner
+
+The Civic Repair Planner estimates repair cost, crew size, SLA hours, risk zone, lane closure requirement, SDG alignment, and dispatch note.
+
+![Repair Cost Graph](assets/roadsense_cost_graph.svg)
+
+Fig. 3. Base repair cost weights used by the planner.
+
+## V. Implementation
+
+The backend is implemented in Python using FastAPI. The frontend is implemented using static HTML, CSS, and JavaScript. Dockerfiles are provided for backend and frontend containers. Docker Compose is used to run the full stack. Kubernetes deployment YAML is included for container orchestration practice.
+
+The main API endpoints are:
+
+| Endpoint | Function |
 |---|---|
-| Software name | RoadSense AI |
-| Version | 1.0.0 |
-| Repository | To be updated with GitHub URL |
-| Docker images | `yourusername/roadsense-ai-backend:latest`, `yourusername/roadsense-ai-frontend:latest` |
-| License | MIT |
-| Operating system | Windows, Linux, macOS through Docker |
-| Programming languages | Python and JavaScript |
-| Main dependencies | FastAPI, OpenCV, NumPy, Pillow, ONNX Runtime, OpenAI SDK |
-| Input | Road image uploaded through REST API or web dashboard |
-| Output | Damage detections, severity, priority, repair plan, annotated image, alert text |
+| `/api/v1/health` | Service health check |
+| `/api/v1/detect` | Full image detection and annotated output |
+| `/api/v1/analyze` | Analytics-only output |
+| `/api/v1/plan` | Manual repair plan generation |
 
-## 1. Motivation and Significance
+## VI. Results and Discussion
 
-Road surface defects such as potholes, alligator cracks, transverse cracks, and longitudinal cracks are common causes of vehicle damage, traffic disruption, and road-safety risk. Manual inspection is slow, inconsistent, and difficult to scale across large urban and semi-urban road networks. Computer vision can detect visible pavement damage, but many prototype systems stop at bounding boxes and do not translate detections into decisions useful for municipal engineers.
+RoadSense AI was tested locally in demo mode. The backend health endpoint returned successful status, and the frontend loaded successfully in the browser. A sample image analysis produced detection count, severity score, HIGH repair priority, estimated cost, crew size, SLA hours, and traffic-control recommendation.
 
-RoadSense AI addresses this software gap by combining image-based road damage detection with a civic repair planning service. The novelty is not only recognising damage, but converting the detection result into an operational response: repair priority, estimated cost in Indian rupees, crew size, expected service timeline, lane-closure requirement, and a dispatch note. This makes the system more suitable for Software Engineering in Artificial Intelligence coursework because it demonstrates inference, GenAI-style reporting, containerisation, deployment, and measurable social impact.
+Example output:
 
-## 2. Software Description
-
-RoadSense AI follows a modular service-oriented architecture. The frontend sends a road image to a FastAPI backend. The backend decodes the image using OpenCV, runs ONNX inference when `best.onnx` is available, and falls back to deterministic demonstration detections for teaching and offline evaluation. The detections are then passed through four post-processing services.
-
-The `SeverityService` calculates a normalised severity score by combining the detected class, model confidence, and damaged area ratio. The `PriorityService` maps severity and detection count to LOW, MEDIUM, HIGH, or CRITICAL urgency. The `LLMAlertService` produces a concise maintenance note using an LLM API when an API key is present, with a rule-based fallback for reproducibility. The new `CivicRepairPlanner` estimates repair cost, crew size, SLA hours, risk zone, SDG alignment, lane closure, and dispatch guidance.
-
-### 2.1 Software Architecture
-
-```text
-Road image upload
-        |
-        v
-FastAPI ingestion and OpenCV decoding
-        |
-        v
-YOLOv8 ONNX inference or deterministic demo mode
-        |
-        v
-Bounding boxes and class labels
-        |
-        v
-Severity scoring and repair priority
-        |
-        v
-Civic repair planner and LLM/rule-based alert
-        |
-        v
-Web dashboard, REST JSON, annotated image
+```json
+{
+  "num_detections": 4,
+  "severity_score": 0.2129,
+  "repair_priority": "HIGH",
+  "estimated_cost_inr": 12100,
+  "crew_size": 2,
+  "sla_hours": 72
+}
 ```
 
-### 2.2 Functional Features
+The result shows that RoadSense AI is not only a detection system but also a maintenance decision-support system.
 
-RoadSense AI provides image upload through `POST /api/v1/detect`, analytics-only inference through `POST /api/v1/analyze`, and manual planning through `POST /api/v1/plan`. The `/api/v1/health` endpoint reports whether the ONNX model is loaded. The frontend displays severity, priority, repair cost, SLA, risk zone, crew size, traffic-control recommendation, SDG alignment, annotated image, damage breakdown, and maintenance alert.
+## VII. Software Impact
 
-### 2.3 Novelty Added to the Base Project
+RoadSense AI supports SDG 3 by improving road safety, SDG 9 by supporting resilient infrastructure, and SDG 11 by contributing to sustainable cities. The project is simple, explainable, and easy to run in academic environments. Its demo mode also makes it useful where GPU resources or trained model files are unavailable.
 
-The base road damage detection workflow was extended with an impact-oriented civic repair planner. This planner makes the project more complete by connecting AI inference to operational decisions. It introduces a simple cost model, SLA mapping, crew allocation logic, risk-zone classification, and SDG explanation. The model is intentionally transparent so that students, reviewers, and civic stakeholders can understand how the recommendation was formed.
+## VIII. Conclusion
 
-## 3. Illustrative Example
-
-If an uploaded image contains pothole and crack detections, RoadSense AI returns the number of detections, bounding boxes, confidence values, a severity score, and a HIGH or CRITICAL repair priority depending on area and confidence. The civic planning layer may recommend a partial lane closure, two or three crew members, a response window of 24 to 72 hours, and an approximate material-and-labour cost. The dashboard then presents these outputs in a compact operational view.
-
-## 4. Impact and Future Developments
-
-The software has direct relevance to SDG 9 by supporting resilient infrastructure maintenance, SDG 11 by enabling safer and more sustainable cities, and SDG 3 by reducing road-safety risk. Its CPU-friendly ONNX design and deterministic fallback make it suitable for classroom demonstrations, local civic pilots, and low-resource environments where GPU servers are unavailable.
-
-Future work can improve the repair planner by integrating GPS coordinates, road category, traffic density, rainfall history, and verified municipal cost schedules. The detection component can also be trained on a local road dataset to increase robustness in Indian road conditions. A future agentic workflow could automatically create maintenance tickets, group nearby defects into work orders, and notify relevant departments.
-
-## 5. Conclusion
-
-RoadSense AI demonstrates how a small AI software project can move from detection output to actionable public-infrastructure intelligence. The application combines computer vision, REST inference, GenAI-style reporting, Docker deployment, and sustainable-development alignment. The added civic repair planning layer provides the main novelty by transforming raw detections into practical maintenance decisions.
-
-## Declaration of Competing Interest
-
-The author declares that there are no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
-
-## Acknowledgements
-
-The project was prepared as part of the Software Engineering in Artificial Intelligence mini project requirement. Open-source tools and libraries were used for implementation and deployment.
+This paper presented RoadSense AI, a lightweight road damage detection and civic repair planning system. The novelty of the project is the Civic Repair Planner, which transforms AI detections into practical repair decisions. The project includes inference API, frontend dashboard, Docker configuration, Kubernetes deployment file, GitHub version control, and IEEE-style documentation.
 
 ## References
 
-[1] Elsevier, Software Impacts journal author information and manuscript format.  
-[2] Ultralytics, YOLOv8 documentation.  
-[3] Microsoft, ONNX Runtime documentation.  
-[4] FastAPI documentation.  
-[5] United Nations, Sustainable Development Goals.
+[1] G. Jocher et al., "Ultralytics YOLOv8," Ultralytics documentation.  
+[2] Microsoft, "ONNX Runtime Documentation."  
+[3] S. Ramírez, "FastAPI Documentation."  
+[4] Docker Inc., "Docker Documentation."  
+[5] United Nations, "Sustainable Development Goals."  

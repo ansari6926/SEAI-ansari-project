@@ -1,0 +1,79 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>RoadSense AI Report</title>
+<style>body{font-family:Arial,sans-serif;max-width:900px;margin:40px auto;line-height:1.55;color:#172124}h1{font-size:32px}h2{font-size:24px;border-bottom:1px solid #ddd;padding-bottom:4px}h3{font-size:19px}pre{background:#f4f6f7;padding:14px;border-radius:6px;overflow:auto}code{background:#f4f6f7;padding:2px 4px;border-radius:4px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:8px;text-align:left}</style>
+</head><body>
+<h1>EXPERIMENT 2</h1>
+<br>
+<h2>TITLE</h2>
+<br>
+<p>Inference Engine and REST API Deployment for RoadSense AI</p>
+<br>
+<h2>AIM</h2>
+<br>
+<p>To implement an inference API for RoadSense AI using FastAPI and ONNX Runtime and verify that uploaded road images return analytics results.</p>
+<br>
+<h2>SOFTWARE USED</h2>
+<br>
+<ul><li>FastAPI</li></ul>
+<ul><li>Uvicorn</li></ul>
+<ul><li>ONNX Runtime</li></ul>
+<ul><li>OpenCV</li></ul>
+<ul><li>Python Multipart</li></ul>
+<ul><li>Swagger UI</li></ul>
+<br>
+<h2>API ENDPOINTS</h2>
+<br>
+<table>
+<tr><th>Endpoint</th><th>Method</th><th>Purpose</th></tr>
+<tr><td>`/`</td><td>GET</td><td>Root API message</td></tr>
+<tr><td>`/api/v1/health`</td><td>GET</td><td>Checks backend, ONNX, and LLM availability</td></tr>
+<tr><td>`/api/v1/detect`</td><td>POST</td><td>Performs image analysis and returns annotated image</td></tr>
+<tr><td>`/api/v1/analyze`</td><td>POST</td><td>Returns analytics without annotated image</td></tr>
+<tr><td>`/api/v1/plan`</td><td>POST</td><td>Generates repair plan from manual detection data</td></tr>
+</table>
+<br>
+<h2>PROCEDURE</h2>
+<br>
+<p>1. FastAPI was selected as the REST inference framework.</p>
+<p>2. Required packages were listed in `backend/requirements.txt`.</p>
+<p>3. The backend application was implemented in `backend/main.py`.</p>
+<p>4. The `/api/v1/health` endpoint was created to confirm service status.</p>
+<p>5. The `/api/v1/detect` endpoint was created for full image analysis.</p>
+<p>6. The `/api/v1/analyze` endpoint was created for lightweight analytics.</p>
+<p>7. The `/api/v1/plan` endpoint was created to test the Civic Repair Planner independently.</p>
+<p>8. Swagger UI was used to verify and document the API.</p>
+<br>
+<h2>SAMPLE TEST COMMAND</h2>
+<br>
+<pre>
+curl -F "file=@sample_road.jpg" http://localhost:8000/api/v1/analyze
+</pre>
+<br>
+<h2>SAMPLE OUTPUT</h2>
+<br>
+<pre>
+{
+  "num_detections": 4,
+  "severity_score": 0.2129,
+  "repair_priority": "HIGH",
+  "civic_repair_plan": {
+    "estimated_cost_inr": 12100,
+    "crew_size": 2,
+    "sla_hours": 72,
+    "lane_closure": "Partial lane closure with warning barricades",
+    "risk_zone": "GREEN"
+  }
+}
+</pre>
+<br>
+<h2>FIGURES TO ADD</h2>
+<br>
+<p>Figure 2.1: FastAPI Swagger UI page  </p>
+<p>Figure 2.2: Health API response  </p>
+<p>Figure 2.3: Analyze endpoint test using Swagger or curl  </p>
+<p>Figure 2.4: JSON response containing Civic Repair Planner output</p>
+<br>
+<h2>RESULT</h2>
+<br>
+<p>The RoadSense AI backend inference API was successfully implemented and tested. The API returns road damage analytics, severity, priority, and repair planning details.</p>
+</body></html>

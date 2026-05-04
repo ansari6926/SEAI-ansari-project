@@ -1,0 +1,91 @@
+{\rtf1\ansi\deff0{\fonttbl{\f0 Arial;}}\fs22
+# PART 3: SOFTWARE PAPER PRESENTATION\par
+\par
+# RoadSense AI: A Lightweight Road Damage Detection and Civic Repair Planning System\par
+\par
+## Abstract\par
+\par
+RoadSense AI is an open-source software application for automated road damage inspection and maintenance prioritisation. The system extends a conventional road damage detection pipeline by adding a civic repair planning layer that estimates severity, repair priority, crew size, service-level agreement, lane closure requirement, approximate repair cost, SDG alignment, and a natural-language maintenance alert. The backend is implemented using FastAPI and can serve either a YOLOv8 ONNX model or a deterministic demonstration mode when the model file is unavailable. A lightweight web dashboard allows users to upload road images, view annotated detections, and receive actionable repair recommendations. The software is aligned with Sustainable Development Goals 3, 9, and 11 by supporting safer roads, resilient infrastructure, and sustainable urban maintenance workflows.\par
+\par
+## Keywords\par
+\par
+Road damage detection; smart cities; civic maintenance; FastAPI; ONNX Runtime; computer vision; sustainable infrastructure\par
+\par
+## Code Metadata\par
+\par
+| Field | Description |\par
+|---|---|\par
+| Software name | RoadSense AI |\par
+| Version | 1.0.0 |\par
+| Repository | To be updated after GitHub push |\par
+| Docker images | To be updated after Docker Hub push |\par
+| License | MIT |\par
+| Operating system | Windows, Linux, macOS through Docker |\par
+| Programming languages | Python and JavaScript |\par
+| Main dependencies | FastAPI, OpenCV, NumPy, Pillow, ONNX Runtime, OpenAI SDK |\par
+| Input | Road image uploaded through REST API or web dashboard |\par
+| Output | Damage detections, severity, priority, repair plan, annotated image, alert text |\par
+\par
+## 1. Motivation and Significance\par
+\par
+Road surface defects such as potholes, alligator cracks, transverse cracks, and longitudinal cracks are common causes of vehicle damage, traffic disruption, and road-safety risk. Manual inspection is slow, inconsistent, and difficult to scale across large urban and semi-urban road networks. Computer vision can detect visible pavement damage, but many prototype systems stop at bounding boxes and do not translate detections into decisions useful for municipal engineers.\par
+\par
+RoadSense AI addresses this software gap by combining image-based road damage detection with a civic repair planning service. The novelty is not only recognising damage, but converting the detection result into an operational response: repair priority, estimated cost in Indian rupees, crew size, expected service timeline, lane-closure requirement, and a dispatch note.\par
+\par
+## 2. Software Description\par
+\par
+RoadSense AI follows a modular service-oriented architecture. The frontend sends a road image to a FastAPI backend. The backend decodes the image using OpenCV, runs ONNX inference when `best.onnx` is available, and falls back to deterministic demonstration detections for teaching and offline evaluation.\par
+\par
+The detections are then passed through four post-processing services. The `SeverityService` calculates a normalised severity score. The `PriorityService` maps severity and detection count to LOW, MEDIUM, HIGH, or CRITICAL urgency. The `LLMAlertService` produces a concise maintenance note using an LLM API when an API key is present, with a rule-based fallback. The `CivicRepairPlanner` estimates repair cost, crew size, SLA hours, risk zone, SDG alignment, lane closure, and dispatch guidance.\par
+\par
+## 2.1 Software Architecture\par
+\par
+```text\par
+Road image upload\par
+        |\par
+        v\par
+FastAPI ingestion and OpenCV decoding\par
+        |\par
+        v\par
+YOLOv8 ONNX inference or deterministic demo mode\par
+        |\par
+        v\par
+Bounding boxes and class labels\par
+        |\par
+        v\par
+Severity scoring and repair priority\par
+        |\par
+        v\par
+Civic repair planner and LLM/rule-based alert\par
+        |\par
+        v\par
+Web dashboard, REST JSON, annotated image\par
+```\par
+\par
+## 3. Illustrative Example\par
+\par
+If an uploaded image contains pothole and crack detections, RoadSense AI returns detection count, bounding boxes, confidence values, a severity score, and a repair priority. The civic planning layer recommends lane closure, crew size, response window, and approximate repair cost. The dashboard presents these outputs in a compact operational view.\par
+\par
+## 4. Impact and Future Developments\par
+\par
+The software has direct relevance to SDG 9 by supporting resilient infrastructure maintenance, SDG 11 by enabling safer and more sustainable cities, and SDG 3 by reducing road-safety risk. Its CPU-friendly ONNX design and deterministic fallback make it suitable for classroom demonstrations and low-resource environments.\par
+\par
+Future work can improve the repair planner by integrating GPS coordinates, road category, traffic density, rainfall history, and verified municipal cost schedules. A future agentic workflow could automatically create maintenance tickets and notify relevant departments.\par
+\par
+## 5. Conclusion\par
+\par
+RoadSense AI demonstrates how a small AI software project can move from detection output to actionable public-infrastructure intelligence. The application combines computer vision, REST inference, GenAI-style reporting, Docker deployment, and sustainable-development alignment.\par
+\par
+## Declaration of Competing Interest\par
+\par
+The author declares that there are no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.\par
+\par
+## References\par
+\par
+[1] Elsevier, Software Impacts journal author information and manuscript format.  \par
+[2] Ultralytics, YOLOv8 documentation.  \par
+[3] Microsoft, ONNX Runtime documentation.  \par
+[4] FastAPI documentation.  \par
+[5] United Nations, Sustainable Development Goals.\par
+
+}

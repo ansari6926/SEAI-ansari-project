@@ -1,0 +1,76 @@
+{\rtf1\ansi\deff0{\fonttbl{\f0 Arial;}}\fs22
+# EXPERIMENT 2\par
+\par
+## TITLE\par
+\par
+Inference Engine and REST API Deployment for RoadSense AI\par
+\par
+## AIM\par
+\par
+To implement an inference API for RoadSense AI using FastAPI and ONNX Runtime and verify that uploaded road images return analytics results.\par
+\par
+## SOFTWARE USED\par
+\par
+- FastAPI\par
+- Uvicorn\par
+- ONNX Runtime\par
+- OpenCV\par
+- Python Multipart\par
+- Swagger UI\par
+\par
+## API ENDPOINTS\par
+\par
+| Endpoint | Method | Purpose |\par
+|---|---|---|\par
+| `/` | GET | Root API message |\par
+| `/api/v1/health` | GET | Checks backend, ONNX, and LLM availability |\par
+| `/api/v1/detect` | POST | Performs image analysis and returns annotated image |\par
+| `/api/v1/analyze` | POST | Returns analytics without annotated image |\par
+| `/api/v1/plan` | POST | Generates repair plan from manual detection data |\par
+\par
+## PROCEDURE\par
+\par
+1. FastAPI was selected as the REST inference framework.\par
+2. Required packages were listed in `backend/requirements.txt`.\par
+3. The backend application was implemented in `backend/main.py`.\par
+4. The `/api/v1/health` endpoint was created to confirm service status.\par
+5. The `/api/v1/detect` endpoint was created for full image analysis.\par
+6. The `/api/v1/analyze` endpoint was created for lightweight analytics.\par
+7. The `/api/v1/plan` endpoint was created to test the Civic Repair Planner independently.\par
+8. Swagger UI was used to verify and document the API.\par
+\par
+## SAMPLE TEST COMMAND\par
+\par
+```bash\par
+curl -F "file=@sample_road.jpg" http://localhost:8000/api/v1/analyze\par
+```\par
+\par
+## SAMPLE OUTPUT\par
+\par
+```json\par
+\{\par
+  "num_detections": 4,\par
+  "severity_score": 0.2129,\par
+  "repair_priority": "HIGH",\par
+  "civic_repair_plan": \{\par
+    "estimated_cost_inr": 12100,\par
+    "crew_size": 2,\par
+    "sla_hours": 72,\par
+    "lane_closure": "Partial lane closure with warning barricades",\par
+    "risk_zone": "GREEN"\par
+  \}\par
+\}\par
+```\par
+\par
+## FIGURES TO ADD\par
+\par
+Figure 2.1: FastAPI Swagger UI page  \par
+Figure 2.2: Health API response  \par
+Figure 2.3: Analyze endpoint test using Swagger or curl  \par
+Figure 2.4: JSON response containing Civic Repair Planner output\par
+\par
+## RESULT\par
+\par
+The RoadSense AI backend inference API was successfully implemented and tested. The API returns road damage analytics, severity, priority, and repair planning details.\par
+
+}

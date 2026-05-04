@@ -1,0 +1,95 @@
+{\rtf1\ansi\deff0{\fonttbl{\f0 Arial;}}\fs22
+# EXPERIMENT 1\par
+\par
+## TITLE\par
+\par
+RoadSense AI: Software Application Selection and Customization\par
+\par
+## AIM\par
+\par
+To select an existing machine learning application, customize it with a novel AI feature, and convert it into a complete Software Engineering in Artificial Intelligence mini project.\par
+\par
+## SOFTWARE USED\par
+\par
+- Python 3.10\par
+- FastAPI\par
+- OpenCV\par
+- ONNX Runtime\par
+- HTML, CSS, JavaScript\par
+- Git\par
+\par
+## BASE PROJECT\par
+\par
+The selected project is a road damage detection application inspired by common YOLO-based road inspection repositories. The base idea is to upload a road image, identify visible damage such as potholes and cracks, and return detection results through an API.\par
+\par
+## CUSTOMIZATION PERFORMED\par
+\par
+The project was customized into RoadSense AI. The backend was built using FastAPI and OpenCV. The system supports ONNX model inference when a trained model file is available and also supports deterministic demo mode for classroom execution without a model file.\par
+\par
+The main novelty added is the Civic Repair Planner. Normal detection systems only return bounding boxes and confidence values. RoadSense AI converts detections into civic maintenance decisions such as repair priority, estimated repair cost, crew size, SLA response hours, risk zone, lane closure recommendation, SDG alignment, and dispatch note.\par
+\par
+## PROCEDURE\par
+\par
+1. A road damage detection use case was selected because it is simple, socially useful, and aligned with SDG 3, SDG 9, and SDG 11.\par
+2. A FastAPI backend was created to receive uploaded road images through REST endpoints.\par
+3. OpenCV was used to decode and annotate images.\par
+4. ONNX Runtime support was added for CPU-only inference.\par
+5. A fallback demo detection function was added so the project can run even without a heavy model file.\par
+6. Severity scoring was implemented using damage class, confidence, and damaged-area ratio.\par
+7. Repair priority classification was implemented using severity and number of detections.\par
+8. The Civic Repair Planner module was added as the novel feature.\par
+9. A lightweight browser dashboard was created to upload images and show results.\par
+\par
+## ARCHITECTURE\par
+\par
+```text\par
+Road Image Upload\par
+        |\par
+        v\par
+Frontend Dashboard\par
+        |\par
+        v\par
+FastAPI Backend\par
+        |\par
+        v\par
+OpenCV Image Processing\par
+        |\par
+        v\par
+ONNX Inference or Demo Mode\par
+        |\par
+        v\par
+Severity and Priority Services\par
+        |\par
+        v\par
+Civic Repair Planner\par
+        |\par
+        v\par
+Dashboard Output and Maintenance Alert\par
+```\par
+\par
+## OUTPUT\par
+\par
+The application produces:\par
+\par
+- Annotated road image\par
+- Damage type and count\par
+- Severity score\par
+- Repair priority\par
+- Estimated repair cost\par
+- Crew size\par
+- SLA response time\par
+- Lane closure guidance\par
+- Maintenance alert\par
+\par
+## FIGURES TO ADD\par
+\par
+Figure 1.1: RoadSense AI project folder in VS Code  \par
+Figure 1.2: Backend FastAPI code showing Civic Repair Planner  \par
+Figure 1.3: Frontend dashboard opened in browser  \par
+Figure 1.4: Sample road image analysis result\par
+\par
+## RESULT\par
+\par
+The base machine learning application was successfully customized into RoadSense AI with a novel civic repair planning module and complete web-based execution flow.\par
+
+}

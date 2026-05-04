@@ -1,0 +1,69 @@
+{\rtf1\ansi\deff0{\fonttbl{\f0 Arial;}}\fs22
+# EXPERIMENT 3\par
+\par
+## TITLE\par
+\par
+Containerization, Git Version Control, GitHub, and Docker Hub Deployment\par
+\par
+## AIM\par
+\par
+To containerize RoadSense AI using Docker, maintain the project using Git version control, and prepare the project for GitHub and Docker Hub publication.\par
+\par
+## SOFTWARE USED\par
+\par
+- Docker Desktop\par
+- Docker Compose\par
+- Git\par
+- GitHub\par
+- Docker Hub\par
+\par
+## PROCEDURE\par
+\par
+The project was initialized as a Git repository. All files were staged and committed using Git commands. A backend Dockerfile was created using the `python:3.10-slim` base image. It installs dependencies from `requirements.txt`, copies backend source files, exposes port 8000, and starts Uvicorn.\par
+\par
+A frontend Dockerfile was created using `nginx:1.25-alpine`. It copies static HTML, CSS, and JavaScript files into the Nginx web directory and exposes port 80. Docker Compose was configured to run the backend, frontend, and Redis service together.\par
+\par
+The Docker publishing script `scripts/docker_publish.sh` was created to build and push backend and frontend images to Docker Hub.\par
+\par
+## GIT COMMANDS USED\par
+\par
+```bash\par
+git init\par
+git add .\par
+git commit -m "Build RoadSense AI mini project"\par
+git commit -m "Add shareable submission package and local runner"\par
+git status\par
+```\par
+\par
+## DOCKER COMMANDS USED\par
+\par
+```bash\par
+docker compose up --build\par
+docker build -t yourusername/roadsense-ai-backend:latest ./backend\par
+docker build -t yourusername/roadsense-ai-frontend:latest ./frontend\par
+docker push yourusername/roadsense-ai-backend:latest\par
+docker push yourusername/roadsense-ai-frontend:latest\par
+```\par
+\par
+## FILES CREATED\par
+\par
+- `backend/Dockerfile`\par
+- `frontend/Dockerfile`\par
+- `docker-compose.yml`\par
+- `scripts/build_and_run.sh`\par
+- `scripts/docker_publish.sh`\par
+\par
+## FIGURES TO ADD\par
+\par
+Figure 3.1: Git commit history  \par
+Figure 3.2: Docker Compose configuration  \par
+Figure 3.3: Docker build output  \par
+Figure 3.4: Docker images listed locally  \par
+Figure 3.5: Docker Hub repository page  \par
+Figure 3.6: GitHub repository page\par
+\par
+## RESULT\par
+\par
+RoadSense AI was successfully prepared for GitHub and Docker Hub publication. The application includes separate Docker images for backend and frontend services.\par
+
+}
