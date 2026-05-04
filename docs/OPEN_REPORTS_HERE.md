@@ -13,7 +13,7 @@ Use these files for submission and viewing.
 
 - Markdown/GitHub view: [RoadSense_AI_Software_Impacts_Paper.md](RoadSense_AI_Software_Impacts_Paper.md)
 - Word file: [RoadSense_AI_Software_Impacts_Paper.docx](RoadSense_AI_Software_Impacts_Paper.docx)
-- Browser file: [RoadSense_AI_Software_Impacts_Paper.html](RoadSense_AI_Software_Impacts_Paper.html)
+- Browser file with IEEE-style two columns: [RoadSense_AI_Software_Impacts_Paper.html](RoadSense_AI_Software_Impacts_Paper.html)
 - RTF file: [RoadSense_AI_Software_Impacts_Paper.rtf](RoadSense_AI_Software_Impacts_Paper.rtf)
 
 ## Figures

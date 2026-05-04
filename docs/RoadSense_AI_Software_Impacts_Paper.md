@@ -1,7 +1,8 @@
 # RoadSense AI: Road Damage Detection and Civic Repair Planning Using Lightweight Computer Vision
 
-**Author:** Ansari  
-**Department:** Software Engineering in Artificial Intelligence  
+**Author:** Syed Sabith Ansari  
+**Email:** sabithansari989@gmail.com  
+**Affiliation:** Department of Computer Science and Engineering (Artificial Intelligence and Machine Learning), Faculty of Engineering and Technology, SRM Institute of Science and Technology, Tiruchirappalli, Tamil Nadu, India  
 **Repository:** https://github.com/ansari6926/SEAI-ansari-project
 
 ## Abstract

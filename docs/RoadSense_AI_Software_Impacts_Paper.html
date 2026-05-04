@@ -1,18 +1,19 @@
 <!doctype html>
 <html><head><meta charset="utf-8"><title>RoadSense AI Report</title>
-<style>body{font-family:Arial,sans-serif;max-width:900px;margin:40px auto;line-height:1.55;color:#172124}h1{font-size:32px}h2{font-size:24px;border-bottom:1px solid #ddd;padding-bottom:4px}h3{font-size:19px}pre{background:#f4f6f7;padding:14px;border-radius:6px;overflow:auto}code{background:#f4f6f7;padding:2px 4px;border-radius:4px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:8px;text-align:left}</style>
+<style>body{font-family:'Times New Roman',serif;max-width:1100px;margin:28px auto;line-height:1.25;color:#111;font-size:14px;column-count:2;column-gap:34px;text-align:justify}h1{font-size:24px;text-align:center;column-span:all;margin-bottom:8px}h2{font-size:15px;text-transform:uppercase;border:0;text-align:left;break-after:avoid}h3{font-size:14px;font-style:italic;break-after:avoid}p,li{break-inside:avoid}pre,table,img{break-inside:avoid;column-span:all}img{max-width:100%;display:block;margin:8px auto}pre{background:#f4f6f7;padding:10px;overflow:auto;text-align:left}code{font-family:Consolas,monospace}table{border-collapse:collapse;width:100%;font-size:12px}td,th{border:1px solid #777;padding:5px;text-align:left}</style>
 </head><body>
 <h1>RoadSense AI: Road Damage Detection and Civic Repair Planning Using Lightweight Computer Vision</h1>
 <br>
-<p>**Author:** Ansari  </p>
-<p>**Department:** Software Engineering in Artificial Intelligence  </p>
-<p>**Repository:** https://github.com/ansari6926/SEAI-ansari-project</p>
+<p>Author: Syed Sabith Ansari  </p>
+<p>Email: sabithansari989@gmail.com  </p>
+<p>Affiliation: Department of Computer Science and Engineering (Artificial Intelligence and Machine Learning), Faculty of Engineering and Technology, SRM Institute of Science and Technology, Tiruchirappalli, Tamil Nadu, India  </p>
+<p>Repository: https://github.com/ansari6926/SEAI-ansari-project</p>
 <br>
 <h2>Abstract</h2>
 <br>
 <p>Road damage inspection is an important task for safe and sustainable transportation infrastructure. Traditional inspection methods are manual, slow, and difficult to scale. This paper presents RoadSense AI, a lightweight road damage detection and civic repair planning system. The software accepts road images through a browser dashboard or REST API, performs computer vision based damage analysis, calculates severity, assigns repair priority, and generates a civic maintenance plan. The main novelty of the system is the Civic Repair Planner, which converts detections into repair cost, crew size, service-level agreement, lane closure requirement, risk zone, SDG alignment, and dispatch note. The system uses FastAPI, OpenCV, ONNX Runtime, Docker, and a static web dashboard. The project is aligned with SDG 3, SDG 9, and SDG 11 by supporting safer roads, resilient infrastructure, and sustainable cities.</p>
 <br>
-<p>**Keywords:** Road damage detection, smart city, FastAPI, ONNX Runtime, civic repair planning, computer vision, sustainable infrastructure.</p>
+<p>Keywords: Road damage detection, smart city, FastAPI, ONNX Runtime, civic repair planning, computer vision, sustainable infrastructure.</p>
 <br>
 <h2>I. Introduction</h2>
 <br>
@@ -32,7 +33,7 @@
 <br>
 <p>The proposed system contains a frontend dashboard, FastAPI backend, ONNX-ready inference layer, analytics layer, Civic Repair Planner, and alert generator.</p>
 <br>
-<p>![RoadSense AI Architecture](assets/roadsense_architecture.svg)</p>
+<img src="assets/roadsense_architecture.svg" alt="RoadSense AI Architecture">
 <br>
 <p>Fig. 1. RoadSense AI system architecture.</p>
 <br>
@@ -58,7 +59,7 @@
 <br>
 <p>The priority service classifies road damage into LOW, MEDIUM, HIGH, or CRITICAL categories.</p>
 <br>
-<p>![Priority SLA Graph](assets/roadsense_priority_graph.svg)</p>
+<img src="assets/roadsense_priority_graph.svg" alt="Priority SLA Graph">
 <br>
 <p>Fig. 2. Repair priority and SLA mapping.</p>
 <br>
@@ -66,7 +67,7 @@
 <br>
 <p>The Civic Repair Planner estimates repair cost, crew size, SLA hours, risk zone, lane closure requirement, SDG alignment, and dispatch note.</p>
 <br>
-<p>![Repair Cost Graph](assets/roadsense_cost_graph.svg)</p>
+<img src="assets/roadsense_cost_graph.svg" alt="Repair Cost Graph">
 <br>
 <p>Fig. 3. Base repair cost weights used by the planner.</p>
 <br>

@@ -2,6 +2,10 @@
 
 # RoadSense AI: A Lightweight Road Damage Detection and Civic Repair Planning System
 
+**Author:** Syed Sabith Ansari  
+**Email:** sabithansari989@gmail.com  
+**Affiliation:** Department of Computer Science and Engineering (Artificial Intelligence and Machine Learning), Faculty of Engineering and Technology, SRM Institute of Science and Technology, Tiruchirappalli, Tamil Nadu, India
+
 ## Abstract
 
 RoadSense AI is an open-source software application for automated road damage inspection and maintenance prioritisation. The system extends a conventional road damage detection pipeline by adding a civic repair planning layer that estimates severity, repair priority, crew size, service-level agreement, lane closure requirement, approximate repair cost, SDG alignment, and a natural-language maintenance alert. The backend is implemented using FastAPI and can serve either a YOLOv8 ONNX model or a deterministic demonstration mode when the model file is unavailable. A lightweight web dashboard allows users to upload road images, view annotated detections, and receive actionable repair recommendations. The software is aligned with Sustainable Development Goals 3, 9, and 11 by supporting safer roads, resilient infrastructure, and sustainable urban maintenance workflows.
