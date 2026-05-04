@@ -106,6 +106,12 @@ def main() -> None:
     pairs = [
         ("docs/RoadSense_AI_Software_Impacts_Paper.md", "docs/RoadSense_AI_Software_Impacts_Paper.docx"),
         ("docs/Project_Report.md", "docs/RoadSense_AI_Project_Report.docx"),
+        ("docs/separate/01_Project_Customization_Report.md", "docs/separate/RoadSense_AI_Project_Customization_Report.docx"),
+        ("docs/separate/02_Inference_and_API_Report.md", "docs/separate/RoadSense_AI_Inference_and_API_Report.docx"),
+        ("docs/separate/03_Docker_and_GitHub_Report.md", "docs/separate/RoadSense_AI_Docker_GitHub_Report.docx"),
+        ("docs/separate/04_Kubernetes_Deployment_Report.md", "docs/separate/RoadSense_AI_Kubernetes_Report.docx"),
+        ("docs/separate/05_Software_Paper_Work.md", "docs/separate/RoadSense_AI_Software_Paper_Work.docx"),
+        ("docs/separate/06_Final_Compiled_Report.md", "docs/separate/RoadSense_AI_Final_Compiled_Report.docx"),
     ]
     for source, target in pairs:
         markdown_to_docx(ROOT / source, ROOT / target)
