@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RoadSense AI</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Road damage intelligence</p>
+          <h1>RoadSense AI</h1>
+          <p class="lede">
+            Upload a road image to detect pavement damage, estimate repair urgency, and generate a civic repair plan.
+          </p>
+        </div>
+        <div class="status">
+          <span id="apiStatus">Checking API...</span>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <form id="uploadForm" class="panel">
+          <h2>Inspection</h2>
+          <label class="dropzone">
+            <input id="imageInput" type="file" accept="image/*" required />
+            <span>Choose road image</span>
+          </label>
+          <button type="submit">Run analysis</button>
+          <p class="hint">Backend: <code id="apiUrl"></code></p>
+        </form>
+
+        <section class="panel result">
+          <h2>Result</h2>
+          <img id="preview" alt="Annotated road inspection result" />
+          <div id="emptyState" class="empty">No inspection run yet.</div>
+        </section>
+      </section>
+
+      <section class="metrics">
+        <article>
+          <span>Severity</span>
+          <strong id="severity">-</strong>
+        </article>
+        <article>
+          <span>Priority</span>
+          <strong id="priority">-</strong>
+        </article>
+        <article>
+          <span>Cost</span>
+          <strong id="cost">-</strong>
+        </article>
+        <article>
+          <span>SLA</span>
+          <strong id="sla">-</strong>
+        </article>
+      </section>
+
+      <section class="details">
+        <div class="panel">
+          <h2>Damage Breakdown</h2>
+          <ul id="detections"></ul>
+        </div>
+        <div class="panel">
+          <h2>Civic Repair Plan</h2>
+          <p id="dispatch">Run an inspection to view the dispatch recommendation.</p>
+          <dl>
+            <div><dt>Risk zone</dt><dd id="risk">-</dd></div>
+            <div><dt>Crew size</dt><dd id="crew">-</dd></div>
+            <div><dt>Traffic control</dt><dd id="lane">-</dd></div>
+            <div><dt>SDG alignment</dt><dd id="sdg">-</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="panel alert">
+        <h2>Maintenance Alert</h2>
+        <p id="alert">The generated maintenance note will appear here.</p>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

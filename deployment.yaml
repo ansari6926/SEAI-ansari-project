@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: roadsense-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: roadsense-app
+  template:
+    metadata:
+      labels:
+        app: roadsense-app
+    spec:
+      containers:
+        - name: roadsense-main
+          image: yourusername/roadsense-ai-backend:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: roadsense-secret
+                  key: openai-api-key
+                  optional: true
+
+        - name: redis-sidecar
+          image: redis:7-alpine
+
+        - name: busybox-sidecar
+          image: busybox
+          command: ["sh", "-c", "while true; do echo Running; sleep 10; done"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: roadsense-service
+spec:
+  selector:
+    app: roadsense-app
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: NodePort
